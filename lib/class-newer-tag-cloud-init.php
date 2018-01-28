@@ -64,7 +64,7 @@ class Newer_Tag_Cloud_Init
     *
     * @since    1.0.0
     */
-    public function __construct(string $name, string $version)
+    public function __construct( $name, $version )
     {
         $this->plugin_name = $name;
         $this->version = $version;

@@ -63,8 +63,9 @@ register_deactivation_hook(__FILE__, __NAMESPACE__ . '\\deactivate_newer_tag_clo
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
+add_action('plugins_loaded', __NAMESPACE__ . '\\run_newer_tag_cloud');
 
-add_action('plugins_loaded', __NAMESPACE__ . '\\run_newer_tag_cloud');/**
+/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,
@@ -98,7 +99,7 @@ function newertagcloud_shortcode($atts)
 }
 
 // function for themes and other plugins
-function newerTagCloud($id = 0): void
+function newerTagCloud($id = 0)
 {
     $plugin = (new Newer_Tag_Cloud());
     echo $plugin->getTagCloud(false, intval($id));
