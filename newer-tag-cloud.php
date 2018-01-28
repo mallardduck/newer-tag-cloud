@@ -8,9 +8,11 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://github.com/mallardduck/
- * @since             1.0.0
- * @package           Newer_Tag_Cloud
+ * @package Newer_Tag_Cloud
+ * @author  Dan Pock (Liquid Web) <dpock@liquidweb.com>
+ * @license GPL 2
+ * @link    http://github.com/mallardduck
+ * @since   1.0.0
  *
  * @wordpress-plugin
  * Plugin Name:   Newer Tag Cloud
@@ -32,7 +34,7 @@ if (! defined('WPINC')) {
 }
 
 // Include the autoloader so we can dynamically include the rest of the classes.
-require_once(trailingslashit(dirname(__FILE__)) . 'includes/autoloader.php');
+require_once trailingslashit(dirname(__FILE__)) . 'includes/autoloader.php';
 
 use LiquidWeb_Newer_Tag_Cloud\Lib\Newer_Tag_Cloud;
 use LiquidWeb_Newer_Tag_Cloud\Lib\Newer_Tag_Cloud_Activator;
@@ -41,6 +43,8 @@ use LiquidWeb_Newer_Tag_Cloud\Lib\Newer_Tag_Cloud_Deactivator;
 /**
  * The code that runs during plugin activation.
  * This action is documented in lib/class-newer-tag-cloud-activator.php
+ *
+ * @return void
  */
 function activate_newer_tag_cloud()
 {
@@ -51,6 +55,8 @@ register_activation_hook(__FILE__, __NAMESPACE__ . '\\activate_newer_tag_cloud')
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in lib/class-newer-tag-cloud-deactivator.php
+ *
+ * @return void
  */
 function deactivate_newer_tag_cloud()
 {
@@ -72,7 +78,8 @@ add_action('plugins_loaded', __NAMESPACE__ . '\\run_newer_tag_cloud');
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since  1.0.0
+ * @return void
  */
 function run_newer_tag_cloud()
 {
@@ -81,25 +88,48 @@ function run_newer_tag_cloud()
     $plugin->run();
 
     if (function_exists('add_shortcode')) {
-        add_shortcode($plugin->get_plugin_name(), __NAMESPACE__ . '\\newertagcloud_shortcode');
+        add_shortcode(
+            $plugin->get_plugin_name(),
+            __NAMESPACE__ . '\\newertagcloud_shortcode'
+        );
     }
 }
 
-// Shortcode function
-function newertagcloud_shortcode($atts)
+/**
+ * Function to enable short code rendering.
+ *
+ * @param variable $atts Shortcode attributes
+ *
+ * @return string The rendered tag cloud.
+ */
+function newertagcloud_shortcode( $atts )
 {
     $plugin = (new Newer_Tag_Cloud());
     $globalOptions = $plugin->getOptions()->get_newertagcloud_options();
 
-    extract(shortcode_atts(array('int' => null, 'widget' => false), $atts));
+    extract(
+        shortcode_atts(
+            array(
+                'int' => null,
+                'widget' => false
+            ),
+            $atts
+        )
+    );
     if (!is_numeric($int)) {
-        $int = $globalOptions['shortcode_instance'];
+        $int = $globalOptions[ 'shortcode_instance' ];
     }
     return $plugin->getTagCloud((bool) $widget, $int);
 }
 
-// function for themes and other plugins
-function newerTagCloud($id = 0)
+/**
+ * Function for themes and plugins.
+ *
+ * @param int $id Shortcode widget id.
+ *
+ * @return void
+ */
+function newerTagCloud( $id = 0 )
 {
     $plugin = (new Newer_Tag_Cloud());
     echo $plugin->getTagCloud(false, intval($id));
