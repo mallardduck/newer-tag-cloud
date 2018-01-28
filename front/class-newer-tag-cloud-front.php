@@ -3,11 +3,15 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://github.com/mallardduck
- * @since      1.0.0
+ * Defines the plugin name, version, and two examples hooks for how to
+ * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    Newer_Tag_Cloud
  * @subpackage Newer_Tag_Cloud/public
+ * @license    GPL 2
+ * @author     Dan Pock (Liquid Web) <dpock@liquidweb.com>
+ * @link       http://github.com/mallardduck
+ * @since      1.0.0
  */
 namespace LiquidWeb_Newer_Tag_Cloud\Front;
 
@@ -21,7 +25,10 @@ use LiquidWeb_Newer_Tag_Cloud\Admin\Newer_Tag_Cloud_Admin as Newer_Tag_Cloud_Adm
  *
  * @package    Newer_Tag_Cloud
  * @subpackage Newer_Tag_Cloud/public
+ * @license    GPL 2
  * @author     Dan Pock (Liquid Web) <dpock@liquidweb.com>
+ * @link       http://github.com/mallardduck
+ * @since      1.0.0
  */
 class Newer_Tag_Cloud_Front
 {
@@ -29,48 +36,51 @@ class Newer_Tag_Cloud_Front
     /**
      * The ID of this plugin.
      *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $plugin_name    The ID of this plugin.
+     * @since  1.0.0
+     * @access private
+     * @var    string    $plugin_name    The ID of this plugin.
      */
-    private $plugin_name;
+    private $_plugin_name;
 
     /**
      * The version of this plugin.
      *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
+     * @since  1.0.0
+     * @access private
+     * @var    string    $version    The current version of this plugin.
      */
-    private $version;
+    private $_version;
 
     /**
      * The options of this plugin.
      *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $options    The current options for this plugin.
+     * @since  1.0.0
+     * @access private
+     * @var    string    $options    The current options for this plugin.
      */
-    private $options;
+    private $_options;
 
     /**
      * Initialize the class and set its properties.
      *
-     * @since    1.0.0
-     * @param      string    $plugin_name       The name of the plugin.
-     * @param      string    $version    The version of this plugin.
+     * @param string $plugin_name The name of the plugin.
+     * @param string $version     The version of this plugin.
+     * @param string $options     The version of this plugin.
+     *
+     * @since 1.0.0
      */
     public function __construct($plugin_name, $version, $options)
     {
-        $this->plugin_name = $plugin_name;
-        $this->version = $version;
-        $this->options = $options;
+        $this->_plugin_name = $plugin_name;
+        $this->_version = $version;
+        $this->_options = $options;
     }
 
     /**
      * Register the stylesheets for the public-facing side of the site.
      *
-     * @since    1.0.0
+     * @return void
+     * @since  1.0.0
      */
     public function enqueue_styles()
     {
@@ -87,13 +97,20 @@ class Newer_Tag_Cloud_Front
          * class.
          */
 
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/newer-tag-cloud-public.css', array(), $this->version, 'all');
+        wp_enqueue_style(
+            $this->plugin_name,
+            plugin_dir_url(__FILE__) . 'css/newer-tag-cloud-public.css',
+            array(),
+            $this->version,
+            'all'
+        );
     }
 
     /**
      * Register the JavaScript for the public-facing side of the site.
      *
-     * @since    1.0.0
+     * @return void
+     * @since  1.0.0
      */
     public function enqueue_scripts()
     {
@@ -113,13 +130,22 @@ class Newer_Tag_Cloud_Front
         //wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/newer-tag-cloud-public.js', array( 'jquery' ), $this->version, false);
     }
 
+    /**
+     * Display a tag cloud.
+     *
+     * @return void
+     * @since  1.0.0
+     */
     public function print_newertagcloud($args)
     {
         extract($args);
         $globalOptions = $this->options->get_newertagcloud_options();
-        $cloud = $this->options->generate_newertagcloud(false, $globalOptions['default_widget_instance']);
+        $cloud = $this->options->generate_newertagcloud(
+            false,
+            $globalOptions['default_widget_instance']
+        );
 
-        require __DIR__ . '/partials/newer-tag-cloud-public-display.php';
+        include __DIR__ . '/partials/newer-tag-cloud-public-display.php';
     }
 
 }
