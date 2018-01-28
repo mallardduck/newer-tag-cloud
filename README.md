@@ -60,7 +60,7 @@ This feature allows you the place different tag clouds on your blog as needed.
 
 ### So who worked on this?
 Credit to the original plugin goes to [funnydingo](https://profiles.wordpress.org/funnydingo/).
-This redone version was created by [liquidwebdan](https://profiles.wordpress.org/liquidwebdan/) (aka [MallardDuck on GitHub](https://github.com/mallardduck))
+This redone version was created by [mallardduck](https://profiles.wordpress.org/mallardduck/) (Also on [GitHub](https://github.com/mallardduck))
 
 Finally, credit for the WordPress Plugin Boilerplate inspiration goes to:
 

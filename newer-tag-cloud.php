@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://github.com/mallardduck
+ * @link              http://github.com/mallardduck/
  * @since             1.0.0
  * @package           Newer_Tag_Cloud
  *
@@ -16,9 +16,9 @@
  * Plugin Name:   Newer Tag Cloud
  * Plugin URI:    https://wordpress.org/plugins/newer-tag-cloud/
  * Description:   The plugin provides an widget which shows a tag cloud with the tags used by the new WordPress own tagging feature
- * Author:        Daniel Pock (Liquid Web)
+ * Author:        mallardduck
  * Version:       1.1.2
- * Author URI:    https://github.com/liquidweb/
+ * Author URI:    https://github.com/mallardduck/
  * License:       GPL-2.0+
  * License URI:   http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:   newer-tag-cloud
