@@ -72,6 +72,10 @@ Finally, credit for the WordPress Plugin Boilerplate inspiration goes to:
 
 ## Changelog
 
+### 1.2.0
+* Update code to work with pre-PHP 7.0 versions. (Remove PHP 7.0+ specific features)
+* Update code style for WordPress CS.
+
 ### 1.1.2
 * Fix odd bug causing issues with posts page.
 
