@@ -19,7 +19,7 @@
  * Plugin URI:    https://wordpress.org/plugins/newer-tag-cloud/
  * Description:   The plugin provides an widget which shows a tag cloud with the tags used by the new WordPress own tagging feature
  * Author:        mallardduck
- * Version:       1.1.2
+ * Version:       1.2.0
  * Author URI:    https://github.com/mallardduck/
  * License:       GPL-2.0+
  * License URI:   http://www.gnu.org/licenses/gpl-2.0.txt
